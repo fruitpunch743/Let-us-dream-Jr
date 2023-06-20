@@ -1,28 +1,4 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
-<div id="progressbar-container"></div>
-
-<style>
-#progressbar-container {
- /* position: relative;*/
-  width: 160px; /* Adjust the width of the container to make the progress bar smaller */
-  height: 80px; /* Adjust the height of the container to make the progress bar smaller */
-}
-
-.progress-bar {
-  border-radius: 40px; /* Adjust the border radius to make the progress bar's corners smaller */
-}
-
-
-</style>
-
-<script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.0.0/dist/progressbar.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-<script>
-  var progressbarContainer = document.getElementById('progressbar-container');
-
-
-
-<?php session_start();
+<?php 
    $_SESSION["idt"] = $_GET['user'];
    include_once('./config.php'); 
    $query1 = "select mentee_mail FROM mentee_table where mentee_id =".$_SESSION["idt"]."; ";
@@ -40,12 +16,31 @@
      $progressValue = 0;
    }
  
- 
  ?>
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+  <style>
+    #progressbar-container {
+      /* position: relative;*/
+    width: 160px; /* Adjust the width of the container to make the progress bar smaller */
+    height: 80px; /* Adjust the height of the container to make the progress bar smaller */
+    }
+    .progress-bar {
+      border-radius: 40px; /* Adjust the border radius to make the progress bar's corners smaller */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.0.0/dist/progressbar.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+<div id="progressbar-container"></div>
+<script>
+  var progressbarContainer = document.getElementById('progressbar-container');
   var bar = new ProgressBar.SemiCircle(progressbarContainer, {
     strokeWidth: 6, // Adjust the strokeWidth to make the progress bar thinner or thicker
     color: '#FFEA82',
@@ -85,4 +80,7 @@ $updateResult = $conn->query($query1);
 
   bar.animate(<?php echo 1 //echo $progressValue/100; ?>); 
 </script>
+</body>
+</html>
+
 
